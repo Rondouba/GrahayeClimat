@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
             </div>
             <div className="mt-12 pt-8 border-t border-white/10 text-center text-sm text-gray-500">
                 <p>&copy; {new Date().getFullYear()} Grahaye Climat+. Tous droits réservés.</p>
-                <p className='mt-1'>Powered by Aldôlo & Open Education Climate</p>
+                <p className='mt-1'>Powered by  <a href="https://aldolo.web.app/">Aldôlo</a></p>
             </div>
         </footer>
     );
