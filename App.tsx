@@ -10,13 +10,23 @@ import Footer from './components/Footer';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import { InspiringQuote } from './components/InspiringQuote';
 import { AuthProvider, AuthContext } from './context/AuthContext';
+import { useEffect } from 'react';
+
 
 const AppContent: React.FC = () => {
   const [activePage, setActivePage] = useState('Accueil');
   const { isAdmin } = useContext(AuthContext);
+  <Footer setActivePage={setActivePage} />
+
+  useEffect(() => {
+    const handler = () => setActivePage('Cours');
+    window.addEventListener('setActivePageCours', handler);
+    return () => window.removeEventListener('setActivePageCours', handler);
+  }, []);
+
 
   const renderPage = () => {
-    switch(activePage) {
+    switch (activePage) {
       case 'Accueil':
         return <HomePage />;
       case 'Cours':
@@ -37,7 +47,7 @@ const AppContent: React.FC = () => {
   return (
     <div className="relative min-h-screen text-white overflow-x-hidden bg-gradient-to-br from-[#062a27] via-[#031818] to-[#142903]">
       <div className="aurora-bg"></div>
-      
+
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Header activePage={activePage} setActivePage={setActivePage} />
 
@@ -45,7 +55,7 @@ const AppContent: React.FC = () => {
           {renderPage()}
         </main>
 
-        <Footer />
+        <Footer setActivePage={setActivePage} />
       </div>
       <InspiringQuote />
     </div>
@@ -59,6 +69,10 @@ const App: React.FC = () => {
       <AppContent />
     </AuthProvider>
   );
+};
+(window as any).goToCours = () => {
+  const event = new Event('setActivePageCours');
+  window.dispatchEvent(event);
 };
 
 export default App;

@@ -10,7 +10,7 @@
     "seed": "node server/seed.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "RONDOUBA MBAIADEM ROCHTO, rondoubarochto49@gmail.com",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -26,7 +26,8 @@
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.3"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

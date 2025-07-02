@@ -13,13 +13,15 @@ const Hero: React.FC = () => {
           <p className="text-lg text-gray-300">
             Optimisation stratégique pour un avenir durable.
           </p>
-          <button className="bg-gradient-to-r from-teal-400 to-emerald-500 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 glow-button text-lg">
+          <button 
+          onClick={() => (window as any).goToCours?.()}
+          className="bg-gradient-to-r from-teal-400 to-emerald-500 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 glow-button text-lg">
             Commencer maintenant
           </button>
         </div>
         <div className="relative flex justify-center items-center h-64 md:h-full">
           <div className="absolute w-full h-full scale-125" style={{ filter: 'drop-shadow(0 0 3rem #14b8a6)' }}>
-             <AfricaMap />
+            <AfricaMap />
           </div>
         </div>
       </div>

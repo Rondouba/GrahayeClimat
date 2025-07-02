@@ -12,9 +12,9 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ activePage, setActivePage }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthModalOpen, setAuthModalOpen] = useState(false);
-  
+
   const { user, isAdmin, logout } = useContext(AuthContext);
-  
+
   const navItems = ["Accueil", "Cours", "Données", "Défis", "Blog"];
   if (isAdmin) {
     navItems.push("Tableau de Bord");
@@ -58,17 +58,17 @@ const Header: React.FC<HeaderProps> = ({ activePage, setActivePage }) => {
             </nav>
 
             <div className="hidden lg:flex items-center gap-4">
-               {isAdmin && (
-                  <button onClick={() => handleNavClick("Tableau de Bord")} className={`text-sm font-bold transition-colors duration-300 px-3 py-2 rounded-full ${activePage === 'Tableau de Bord' ? 'bg-teal-400/20 text-teal-200' : 'text-gray-300 hover:text-white'}`}>
-                    Tableau de Bord
-                  </button>
-                )}
+              {isAdmin && (
+                <button onClick={() => handleNavClick("Tableau de Bord")} className={`text-sm font-bold transition-colors duration-300 px-3 py-2 rounded-full ${activePage === 'Tableau de Bord' ? 'bg-teal-400/20 text-teal-200' : 'text-gray-300 hover:text-white'}`}>
+                  Tableau de Bord
+                </button>
+              )}
               <button className="text-sm font-medium text-gray-300 hover:text-white transition-colors">FR</button>
               <div className="w-px h-5 bg-white/20"></div>
               {user ? (
                 <div className="flex items-center gap-3">
-                   <span className="text-sm font-medium text-white">{user.name}</span>
-                   <button onClick={handleLogout} className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Déconnexion</button>
+                  <span className="text-sm font-medium text-white">{user.name}</span>
+                  <button onClick={handleLogout} className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Déconnexion</button>
                 </div>
               ) : (
                 <button onClick={() => setAuthModalOpen(true)} className="flex items-center gap-2 text-sm font-medium text-white bg-white/10 px-4 py-2 rounded-full hover:bg-white/20 transition-colors">
@@ -77,7 +77,7 @@ const Header: React.FC<HeaderProps> = ({ activePage, setActivePage }) => {
                 </button>
               )}
             </div>
-            
+
             <div className="lg:hidden">
               <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -86,40 +86,39 @@ const Header: React.FC<HeaderProps> = ({ activePage, setActivePage }) => {
               </button>
             </div>
           </div>
-          
+
           {isMenuOpen && (
-              <div className="lg:hidden mt-4 pb-4">
-                  <nav className="flex flex-col items-center gap-y-4">
-                      {navItems.map((item) => (
-                          <button
-                              key={item}
-                              onClick={() => handleNavClick(item)}
-                              className={`text-lg font-medium transition-colors ${
-                                  activePage === item ? 'text-teal-300' : 'text-gray-300 hover:text-white'
-                              }`}
-                          >
-                              {item}
-                          </button>
-                      ))}
-                      <div className="flex flex-col items-center gap-4 mt-4 w-full">
-                         <div className='flex items-center gap-4'>
-                           <button className="text-lg font-medium text-gray-300 hover:text-white transition-colors">FR</button>
-                           <div className="w-px h-6 bg-white/20"></div>
-                            {user ? (
-                                <div className="flex items-center gap-3">
-                                <span className="text-lg font-medium text-white">{user.name}</span>
-                                <button onClick={handleLogout} className="text-lg font-medium text-gray-300 hover:text-white transition-colors">Déconnexion</button>
-                                </div>
-                            ) : (
-                                <button onClick={() => { setAuthModalOpen(true); setIsMenuOpen(false); }} className="flex items-center gap-2 text-lg font-medium text-white bg-white/10 px-6 py-2 rounded-full hover:bg-white/20 transition-colors">
-                                Connexion
-                                <div className="w-3 h-3 border-2 border-teal-300 rounded-full"></div>
-                                </button>
-                            )}
-                         </div>
+            <div className="lg:hidden mt-4 pb-4">
+              <nav className="flex flex-col items-center gap-y-4">
+                {navItems.map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => handleNavClick(item)}
+                    className={`text-lg font-medium transition-colors ${activePage === item ? 'text-teal-300' : 'text-gray-300 hover:text-white'
+                      }`}
+                  >
+                    {item}
+                  </button>
+                ))}
+                <div className="flex flex-col items-center gap-4 mt-4 w-full">
+                  <div className='flex items-center gap-4'>
+                    <button className="text-lg font-medium text-gray-300 hover:text-white transition-colors">FR</button>
+                    <div className="w-px h-6 bg-white/20"></div>
+                    {user ? (
+                      <div className="flex items-center gap-3">
+                        <span className="text-lg font-medium text-white">{user.name}</span>
+                        <button onClick={handleLogout} className="text-lg font-medium text-gray-300 hover:text-white transition-colors">Déconnexion</button>
                       </div>
-                  </nav>
-              </div>
+                    ) : (
+                      <button onClick={() => { setAuthModalOpen(true); setIsMenuOpen(false); }} className="flex items-center gap-2 text-lg font-medium text-white bg-white/10 px-6 py-2 rounded-full hover:bg-white/20 transition-colors">
+                        Connexion
+                        <div className="w-3 h-3 border-2 border-teal-300 rounded-full"></div>
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </nav>
+            </div>
           )}
         </div>
       </header>
