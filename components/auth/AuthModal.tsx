@@ -53,6 +53,11 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         window.location.href = '/api/auth/microsoft';
     };
 
+    const handleAppleLogin = () => {
+        window.location.href = '/api/auth/apple';
+    };
+
+
     if (!isOpen) return null;
 
     return (
@@ -73,10 +78,10 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                     <button onClick={handleMicrosoftLogin} className="w-full flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 transition-colors p-3 rounded-lg">
                         <MicrosoftIcon className="w-5 h-5" /> Continuer avec Microsoft
                     </button>
-
-                    <button className="w-full flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 transition-colors p-3 rounded-lg">
+                    <button onClick={handleAppleLogin} className="w-full flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 transition-colors p-3 rounded-lg">
                         <AppleIcon className="w-5 h-5" /> Continuer avec Apple
                     </button>
+
                 </div>
 
                 <div className="flex items-center my-6">

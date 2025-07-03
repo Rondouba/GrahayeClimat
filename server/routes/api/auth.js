@@ -115,4 +115,17 @@ router.get(
     }
 );
 
+// Rediriger vers Apple
+router.get('/apple', passport.authenticate('apple'));
+
+// Callback Apple
+router.get(
+  '/apple/callback',
+  passport.authenticate('apple', { failureRedirect: '/' }),
+  (req, res) => {
+    sendTokenResponse(req.user, 200, res);
+  }
+);
+
+
 module.exports = router;
