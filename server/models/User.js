@@ -23,13 +23,14 @@ const UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: [function() { return !this.googleId; }, 'Please add a password'],
+        required: [function () { return !this.googleId; }, 'Please add a password'],
         minlength: 6,
         select: false // Do not return password by default
     },
     googleId: {
         type: String
     },
+    microsoftId: { type: String },
     createdAt: {
         type: Date,
         default: Date.now
@@ -37,7 +38,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 // Encrypt password using bcrypt
-UserSchema.pre('save', async function(next) {
+UserSchema.pre('save', async function (next) {
     if (!this.isModified('password') || !this.password) {
         return next();
     }
@@ -46,7 +47,7 @@ UserSchema.pre('save', async function(next) {
 });
 
 // Match user entered password to hashed password in database
-UserSchema.methods.matchPassword = async function(enteredPassword) {
+UserSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 };
 

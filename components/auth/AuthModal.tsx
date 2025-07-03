@@ -44,11 +44,14 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
             setLoading(false);
         }
     };
-    
+
     const handleGoogleLogin = () => {
         window.location.href = '/api/auth/google';
     };
 
+    const handleMicrosoftLogin = () => {
+        window.location.href = '/api/auth/microsoft';
+    };
 
     if (!isOpen) return null;
 
@@ -67,15 +70,15 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                     <button onClick={handleGoogleLogin} className="w-full flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 transition-colors p-3 rounded-lg">
                         <GoogleIcon className="w-5 h-5" /> Continuer avec Google
                     </button>
-                    {/* Placeholders for other providers */}
-                    <button className="w-full flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 transition-colors p-3 rounded-lg opacity-50 cursor-not-allowed">
+                    <button onClick={handleMicrosoftLogin} className="w-full flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 transition-colors p-3 rounded-lg">
                         <MicrosoftIcon className="w-5 h-5" /> Continuer avec Microsoft
                     </button>
-                    <button className="w-full flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 transition-colors p-3 rounded-lg opacity-50 cursor-not-allowed">
+
+                    <button className="w-full flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 transition-colors p-3 rounded-lg">
                         <AppleIcon className="w-5 h-5" /> Continuer avec Apple
                     </button>
                 </div>
-                
+
                 <div className="flex items-center my-6">
                     <hr className="flex-grow border-white/20" />
                     <span className="px-4 text-gray-400 text-sm">OU</span>
@@ -113,9 +116,9 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                         minLength={6}
                         className="w-full bg-white/5 border border-white/20 rounded-lg py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-400"
                     />
-                    
+
                     {error && <p className="text-red-400 text-sm text-center">{error}</p>}
-                    
+
                     <button type="submit" disabled={loading} className="w-full bg-gradient-to-r from-teal-400 to-emerald-500 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 glow-button disabled:opacity-50">
                         {loading ? 'Chargement...' : (isLoginView ? 'Se connecter' : 'Créer le compte')}
                     </button>

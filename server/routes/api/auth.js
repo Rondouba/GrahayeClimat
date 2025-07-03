@@ -103,5 +103,16 @@ router.get('/google/callback', passport.authenticate('google', { failureRedirect
     sendTokenResponse(req.user, 200, res);
 });
 
+// Microsoft login route
+router.get('/microsoft', passport.authenticate('microsoft', { scope: ['user.read'] }));
+
+// Microsoft callback
+router.get(
+    '/microsoft/callback',
+    passport.authenticate('microsoft', { failureRedirect: '/' }),
+    (req, res) => {
+        sendTokenResponse(req.user, 200, res); // renvoie le JWT
+    }
+);
 
 module.exports = router;
