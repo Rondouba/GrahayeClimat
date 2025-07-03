@@ -23,6 +23,11 @@ const AppContent: React.FC = () => {
     window.addEventListener('setActivePageCours', handler);
     return () => window.removeEventListener('setActivePageCours', handler);
   }, []);
+  useEffect(() => {
+    const handleGoToBlog = () => setActivePage('Blog');
+    window.addEventListener("goToBlog", handleGoToBlog);
+    return () => window.removeEventListener("goToBlog", handleGoToBlog);
+  }, []);
 
 
   const renderPage = () => {

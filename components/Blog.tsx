@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRightIcon } from './icons/ArrowRightIcon';
 
 interface BlogCardProps {
-  date: string;
-  title: string;
-  tag: string;
-  description: string;
-  imageUrl?: string;
-  details: string;
+    date: string;
+    title: string;
+    tag: string;
+    description: string;
+    imageUrl?: string;
+    details: string;
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({ date, title, tag, description, imageUrl, details }) => (
@@ -51,12 +51,26 @@ const Blog: React.FC = () => {
         <section>
             <div className="flex justify-between items-center mb-8">
                 <h2 className="text-3xl font-bold">Blog</h2>
-                <a href="#" className="flex items-center gap-2 text-teal-300 hover:text-white transition-colors">
+                {/* <a href="#" className="flex items-center gap-2 text-teal-300 hover:text-white transition-colors">
+                    <span>Voir tout</span>
+                    <ArrowRightIcon className="w-4 h-4" />
+                </a> */}
+
+                <a
+                    href="#"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        window.dispatchEvent(new CustomEvent("goToBlog"));
+                    }}
+                    className="flex items-center gap-2 text-teal-300 hover:text-white transition-colors"
+                >
                     <span>Voir tout</span>
                     <ArrowRightIcon className="w-4 h-4" />
                 </a>
+
+
             </div>
-             {loading ? (
+            {loading ? (
                 <div className="text-center text-gray-400">Chargement du blog...</div>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
